@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sauter.Cloud.Functions.SignalR": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --port 7072"
+    }
+  }
+}

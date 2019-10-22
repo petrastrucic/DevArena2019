@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=serverlesstesting;AccountKey=CvVNlsf+4vgBK32yAkFy0Bxhb1JQJHp3erAG0hlpTq5blyVcc5QV8ia6WRKiKvDALUjd53uz1ZI1HZZlqaCrLQ==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+    "AzureSignalRConnectionString": "Endpoint=https://ekobit-dev-system-signalr.service.signalr.net;AccessKey=iAfdl7p6gemF6Nh7ASJCCJacbdIXelVqWUVTl+exk0w=;Version=1.0;",
+    "IoTHubEndpoint": "Endpoint=sb://iothub-ns-ekobit-dev-2265190-9f39af8375.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=IRn2zB01IcXC1Ek8AactYmDJO57nC3Or/R1FR6xP260=;EntityPath=ekobit-dev-system-iothub"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "*", 
+    "CORSCredentials": true
+  }
+}

@@ -1,0 +1,22 @@
+﻿<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@aspnet/signalr@1.1.2/dist/browser/signalr.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:7072/api").build();
+
+        connection.on("iotMessage", function (messageFromIoTDevice) {
+            document.getElementById("message").innerHTML = messageFromIoTDevice;
+        });
+
+        connection.onclose(() => console.log('disconnected'));
+        console.log('connecting...');
+        connection.start()
+            .catch(console.error);
+
+        console.log(Date.now().toLocaleDateString);
+    </script>
+</head>
+<body>
+    <p id="message"></p>
+</body>
+</html>

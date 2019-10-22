@@ -1,0 +1,22 @@
+﻿{
+  "Serilog": {
+    "MinimumLevel": "Information",
+    "Using": [ "Serilog.Sinks.RollingFile" ], // Serilog.Sinks.RollingFile
+    "WriteTo": [
+      {
+        "Name": "RollingFile",
+        "Args": {
+          "pathFormat": "C:\\SAUTER\\Logs\\signalr-system-function-{Date}.log",
+          "shared": true
+        }
+      },
+      {
+        "Name": "AzureTableStorage",
+        "Args": {
+          "storageTableName": "SignalRSystemFunction",
+          "connectionString": "DefaultEndpointsProtocol=https;AccountName=ekobitdevstologging001;AccountKey=7lWJSC4zqc7MICnl//M9CHIJMMXrrsasHJ+V7A8QJ+fJugIo/1p3+R0Fk6HWnY+sClz6f2AmBPpCyYwz6w+J9g==;EndpointSuffix=core.windows.net"
+        }
+      }
+    ]
+  }
+}

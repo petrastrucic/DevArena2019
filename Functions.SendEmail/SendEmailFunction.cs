@@ -15,9 +15,7 @@ namespace DevArena2019.SendEmailFunction
             [ServiceBusTrigger("%ServiceBusEmailQueue%", 
             Connection = "ServiceBusConnectionString")]Message mySbMsg)
         {
-            string str = System.Text.Encoding.Default.GetString(mySbMsg.Body);
-            SendEmail sendEmail = JsonConvert.DeserializeObject<SendEmail>(str);
-
+            SendEmail sendEmail = JsonConvert.DeserializeObject<SendEmail>(System.Text.Encoding.Default.GetString(mySbMsg.Body));
 
             var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             var client = new SendGridClient(apiKey);

@@ -18,14 +18,14 @@ namespace DevArena2019.FunctionTrigger
             {
                 Mail = "pstrucic@ekobithr.onmicrosoft.com",
                 RecipientName = "Petra Strucic",
-                Content = "blab"
+                Content = "Welcome to DevArena! We hope you are having a great time and that you like this mail. " +
+                "Yours sincerely - sweet little demo."
             };
 
             var content = JsonConvert.SerializeObject(sendEmail);
-
-            var queueClient = new QueueClient(ServiceBusConnectionString, EmailQueue);
-
             var message = new Message(Encoding.UTF8.GetBytes(content));
+            
+            var queueClient = new QueueClient(ServiceBusConnectionString, EmailQueue);
             await queueClient.SendAsync(message);
 
             await queueClient.CloseAsync();
