@@ -22,10 +22,10 @@ namespace DevArena2019.FunctionTrigger
                 "Yours sincerely - sweet little demo."
             };
 
-            var content = JsonConvert.SerializeObject(sendEmail);
-            var message = new Message(Encoding.UTF8.GetBytes(content));
+            string content = JsonConvert.SerializeObject(sendEmail);
+            Message message = new Message(Encoding.UTF8.GetBytes(content));
             
-            var queueClient = new QueueClient(ServiceBusConnectionString, EmailQueue);
+            QueueClient queueClient = new QueueClient(ServiceBusConnectionString, EmailQueue);
             await queueClient.SendAsync(message);
 
             await queueClient.CloseAsync();

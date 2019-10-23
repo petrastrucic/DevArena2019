@@ -3,7 +3,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 using System;
 using System.Globalization;
-using System.Net.Http;
 using System.Text;
 using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
@@ -11,8 +10,6 @@ namespace Sauter.Cloud.Functions.Telemetry.Functions
 {
     public static class MonitorTelemetry
     {
-        private static HttpClient client = new HttpClient();
-
         [FunctionName("MonitorTelemetry")]
         public static void Run(
             [IoTHubTrigger("messages/events", Connection = "IoTHubEndpoint")]EventData eventGridEvent,
