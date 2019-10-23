@@ -16,37 +16,11 @@ namespace SimulatedDeviceEventHub
         private static DeviceClient deviceClient;
 
         // The device connection string to authenticate the device with your IoT hub.
-        // Using the Azure CLI:
-        // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyDotnetDevice --output table
         private readonly static string deviceConnString = "HostName=ekobit-dev-system-iothub.azure-devices.net;DeviceId=device;SharedAccessKey=p6qWkP9pN8NlVLThrPROX939pE4MQTt9K+0PbTDm5P8=";
 
-        private static int telemetryInterval = 1; // Seconds
-
-        // Handle the direct method call
-        private static Task<MethodResponse> SetTelemetryInterval(MethodRequest methodRequest, object userContext)
-        {
-            var data = Encoding.UTF8.GetString(methodRequest.Data);
-
-            // Check the payload is a single integer value
-            if (Int32.TryParse(data, out telemetryInterval))
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Telemetry interval set to {0} seconds", data);
-                Console.ResetColor();
-
-                // Acknowlege the direct method call with a 200 success message
-                string result = "{\"result\":\"Executed direct method: " + methodRequest.Name + "\"}";
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
-            }
-            else
-            {
-                // Acknowlege the direct method call with a 400 error message
-                string result = "{\"result\":\"Invalid parameter\"}";
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 400));
-            }
-        }
-
-        // Async method to send simulated telemetry
+        /// <summary>
+        /// Async method to send simulated telemetry.
+        /// </summary>
         private static async void SendDeviceToCloudMessagesAsync()
         {
             // Initial telemetry values
@@ -72,23 +46,22 @@ namespace SimulatedDeviceEventHub
                 // An IoT hub can filter on these properties without access to the message body.
                 message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
 
+                // Connect to the IoT hub using the MQTT protocol
+                deviceClient = DeviceClient.CreateFromConnectionString(deviceConnString, TransportType.Mqtt);
                 // Send the tlemetry message
                 await deviceClient.SendEventAsync(message);
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
 
-                await Task.Delay(telemetryInterval * 1000);
+                await Task.Delay(1000);
             }
         }
-        private static void Main(string[] args)
+
+        private static void Main()
         {
             Console.WriteLine("IoT Hub Quickstarts #2 - Simulated device. Ctrl-C to exit.\n");
 
-            // Connect to the IoT hub using the MQTT protocol
-            deviceClient = DeviceClient.CreateFromConnectionString(deviceConnString, TransportType.Mqtt);
-
-            // Create a handler for the direct method call
-            deviceClient.SetMethodHandlerAsync("SetTelemetryInterval", SetTelemetryInterval, null).Wait();
             SendDeviceToCloudMessagesAsync();
+
             Console.ReadLine();
         }
     }
