@@ -6,6 +6,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
 
     "ServiceBusConnectionString": "Endpoint=sb://devarena2019.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=r6SxXLEgUgPPWCs2Yeefhmr4jnNNK/2rR4RSf0DOg90=",
-    "ServiceBusEmailQueue": "devarena-mails"
+    "ServiceBusEmailQueue": "devarena-mails",
+    "SENDGRID_API_KEY": "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"
   }
 }

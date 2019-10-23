@@ -4,7 +4,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 using Serilog;
 
-namespace Sauter.Cloud.Functions.SignalR.Functions
+namespace Sauter.Cloud.Functions.SignalR
 {
     public static class NegotiateFunction
     {

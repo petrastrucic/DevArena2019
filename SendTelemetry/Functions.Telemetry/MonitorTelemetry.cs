@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Text;
 using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
-namespace Sauter.Cloud.Functions.Telemetry.Functions
+namespace Sauter.Cloud.Functions.Telemetry
 {
     public static class MonitorTelemetry
     {
