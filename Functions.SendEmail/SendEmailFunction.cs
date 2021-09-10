@@ -12,13 +12,13 @@ namespace DevArena2019.SendEmailFunction
     {
         [FunctionName("SendEmailFunction")]
         public static async Task Run(
-            [ServiceBusTrigger("%ServiceBusEmailQueue%", 
+            [ServiceBusTrigger("%ServiceBusEmailQueue%",
             Connection = "ServiceBusConnectionString")]Message mySbMsg)
         {
             #region Create SendGrid message
             SendEmail sendEmail = JsonConvert.DeserializeObject<SendEmail>(System.Text.Encoding.Default.GetString(mySbMsg.Body));
             SendGridMessage msg = new SendGridMessage()
-            {   
+            {
                 From = new EmailAddress("pstrucic@ekobit.com", "DevArena 2019, powered by SendGrid"),
                 Subject = "Hello conferencers from the SendGrid SDK!",
                 PlainTextContent = sendEmail.Content,

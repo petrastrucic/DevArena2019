@@ -11,7 +11,7 @@ namespace Sauter.Cloud.Functions.SignalR
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo Run(
             [HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequest req,
-            [SignalRConnectionInfo(HubName = "default")]SignalRConnectionInfo connectionInfo
+            [SignalRConnectionInfo(HubName = "default")] SignalRConnectionInfo connectionInfo
             )
         {
             Log.Information($"SignalR Negotiate Function triggered. " +

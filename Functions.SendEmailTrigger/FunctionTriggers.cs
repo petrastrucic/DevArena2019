@@ -1,5 +1,4 @@
-﻿using DevArena2019.SendEmailFunction.Models;
-using DevArena2019.Triggers;
+﻿using DevArena2019.Triggers;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -24,7 +23,7 @@ namespace DevArena2019.FunctionTrigger
 
             string content = JsonConvert.SerializeObject(sendEmail);
             Message message = new Message(Encoding.UTF8.GetBytes(content));
-            
+
             QueueClient queueClient = new QueueClient(ServiceBusConnectionString, EmailQueue);
             await queueClient.SendAsync(message);
 
